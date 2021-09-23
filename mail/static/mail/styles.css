@@ -1,0 +1,14 @@
+textarea {
+    min-height: 400px;
+}
+
+.email_div {
+    border-style: solid;
+    border-width: 1px;
+    padding: 1%;
+}
+
+.email_div:hover {
+    background-color: #f8f9fa;
+    cursor: pointer;
+}

@@ -1,0 +1,86 @@
+Improvements:
+    User management forms validation
+
+Mail
+    Design a front-end
+    for an email client
+    that makes API calls
+    to send and receive emails
+
+Single page app with interface controlled by JavaScript to go to different sections
+
+compose_email()
+    hides emails-view by setting style.display=none
+    shows compose-view by setting style.display=block
+    sets all form input fields to '' to clear them out
+        essentially, present a blank email form **every time** Compose button is clicked
+
+load_mailbox('which_mailbox?')
+    shows emails-view
+    hides compose-view
+    mailboxes: inbox, sent, archive
+    display name of selected mailbox by updating innerHTML of emails.view (capfirst)
+
+need to implement
+    showing emails in
+        inbox, sent, archive mailboxes
+    view to show contents of an email
+    sending email on compose form submit
+
+GET /emails/<str:mailbox>
+    returns all emails in a mailbox
+
+GET /emails/<int:email_id>
+    returns the email with a specified id
+
+POST /emails
+    sends email
+
+PUT /emails/<int:email_id>
+    marks as an email as read/unread or archived/unarchived
+
+ONLY TOUCH inbox.js!!!
+
+Send mail
+    Write JS to actually send compose email form
+    POST /emails with recipients, subject, body
+    Show sent mailbox afterwards
+
+Mailbox
+    Show requested mailbox onclick
+    GET /emails/<mailbox> for latest emails in there
+    Each email in its own div with a border
+    Each email div shows
+        From
+        Subject
+        Timestamp
+    Unread emails in white background
+    Read emails in gray background
+
+View email
+    Show email content onclick
+    GET /emails/<email_id>
+    Show
+        sender
+        recipients
+        subject
+        timestamp
+        body
+    Add another div to inbox.html for this
+    Make sure update hiding and showing divs afterwards
+    Look at HTML element event listeners hint for this
+    Mark email as read onclick using PUT /emails/<email_id>
+
+Archive/unarchive
+    Have archive button on emails viewed from inbox
+    Have unarchive button on emails viewed from archive
+    Not applicable on sent
+    PUT /emails/<email_id>
+    On archival/unarchival load inbox
+
+Reply
+    Show reply button on currently viewing email
+    Show compose form onclick
+    Pre-fill form recipient
+    Pre-fill subject with 'Re: ' + original (if prefix not already there)
+    Pre-fill body with 'On Jan 1 2020, 12:00 AM foo@example.com wrote:' + '\n' + original
